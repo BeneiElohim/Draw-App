@@ -1,6 +1,6 @@
 function ShapesTool(){
 	//set an icon and a name for the object
-	this.icon = "assets/shapes.png";
+	this.icon = "assets/shapes.jpg";
 	this.name = "shapes";
 
 	//to smoothly draw we'll draw a line from the previous mouse location
