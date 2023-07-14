@@ -26,6 +26,7 @@ function setup() {
 	toolbox.addTool(new SprayCanTool());
 	toolbox.addTool(new mirrorDrawTool());
 	toolbox.addTool(new ShapesTool());
+	toolbox.addTool(new ScissorTool());
 	background(255);
 
 }
