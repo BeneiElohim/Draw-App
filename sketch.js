@@ -3,13 +3,14 @@
 var toolbox = null;
 var colourP = null;
 var helpers = null;
+var c;
 
 
 function setup() {
 
 	//create a canvas to fill the content div from index.html
 	canvasContainer = select('#content');
-	var c = createCanvas(canvasContainer.size().width, canvasContainer.size().height);
+	c = createCanvas(canvasContainer.size().width, canvasContainer.size().height);
 	c.parent("content");
 
 	//create helper functions and the colour palette
