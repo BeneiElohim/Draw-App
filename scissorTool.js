@@ -2,6 +2,7 @@ function ScissorTool(){
 	//set an icon and a name for the object
 	this.icon = "assets/scissors.jpg";
 	this.name = "scissors";
+    this.selectMode = 0;
 
 	//to smoothly draw we'll draw a line from the previous mouse location
 	//to the current mouse location. The following values store
@@ -37,19 +38,27 @@ function ScissorTool(){
 	};
     this.populateOptions = function() {
 		select(".options").html(
-			"<button id='directionButton'>Make Horizontal</button>");
-		// 	//click handler
-		select("#directionButton").mouseClicked(function() {
-			var button = select("#" + this.elt.id);
-			if (self.axis == "x") {
-				self.axis = "y";
-				self.lineOfSymmetry = height / 2;
-				button.html('Make Vertical');
-			} else {
-				self.axis = "x";
-				self.lineOfSymmetry = width / 2;
-				button.html('Make Horizontal');
-			}
-		});
+			"<button id='selectButton'>Select Area</button>");
+
+		let selectButton = select("#selectButton");
+        selectButton.mousePressed(() => {
+            if (this.selectMode == 0) {
+                console.log("select mode 0");
+                this.selectMode = 1;
+                selectButton.html("Cut");
+            }
+            else if (this.selectMode == 1) {
+                console.log("select mode 1");
+                this.selectMode = 2;
+                selectButton.html("Paste");
+            }
+            else if (this.selectMode == 2) {
+                console.log("select mode 2");
+                this.selectMode = 0;
+                selectButton.html("Select Area");
+            }
+        })
+
+
 	};
 }
