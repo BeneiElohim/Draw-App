@@ -3,37 +3,13 @@ function ScissorTool(){
 	this.icon = "assets/scissors.jpg";
 	this.name = "scissors";
     this.selectMode = 0;
-
-	//to smoothly draw we'll draw a line from the previous mouse location
-	//to the current mouse location. The following values store
-	//the locations from the last frame. They are -1 to start with because
-	//we haven't started drawing yet.
-	var previousMouseX = -1;
-	var previousMouseY = -1;
-
+	this.selectedArea = {x: 0, y: 0, w: 100, h: 100};
 	this.draw = function(){
 		//if the mouse is pressed
-		if(mouseIsPressed){
-			//check if they previousX and Y are -1. set them to the current
-			//mouse X and Y if they are.
-			if (previousMouseX == -1){
-				previousMouseX = mouseX;
-				previousMouseY = mouseY;
-			}
-			//if we already have values for previousX and Y we can draw a line from 
-			//there to the current mouse location
-			else{
-				line(previousMouseX, previousMouseY, mouseX, mouseY);
-				previousMouseX = mouseX;
-				previousMouseY = mouseY;
-			}
-		}
-		//if the user has released the mouse we want to set the previousMouse values 
-		//back to -1.
-		//try and comment out these lines and see what happens!
-		else{
-			previousMouseX = -1;
-			previousMouseY = -1;
+		if(mouseIsPressed && this.selectMode == 1){
+			this.selectedArea.x = mouseX;
+			this.selectedArea.y = mouseY;
+			this.mouseDragged();
 		}
 	};
     this.populateOptions = function() {
@@ -43,17 +19,14 @@ function ScissorTool(){
 		let selectButton = select("#selectButton");
         selectButton.mousePressed(() => {
             if (this.selectMode == 0) {
-                console.log("select mode 0");
                 this.selectMode = 1;
                 selectButton.html("Cut");
             }
             else if (this.selectMode == 1) {
-                console.log("select mode 1");
                 this.selectMode = 2;
                 selectButton.html("Paste");
             }
             else if (this.selectMode == 2) {
-                console.log("select mode 2");
                 this.selectMode = 0;
                 selectButton.html("Select Area");
             }
@@ -61,4 +34,21 @@ function ScissorTool(){
 
 
 	};
+	this.mouseDragged = function(){
+		console.log("mouse dragged");
+		console.log(this.selectedArea);
+		if (this.selectMode == 1) {
+			this.selectedArea.w = mouseX - this.selectedArea.x;
+			this.selectedArea.h = mouseY - this.selectedArea.y;
+
+			if (this.selectedArea.w < 0) {
+				this.selectedArea.x = mouseX;
+				this.selectedArea.w *= -1;
+			}
+			if (this.selectedArea.h < 0) {
+				this.selectedArea.y = mouseY;
+				this.selectedArea.h *= -1;
+			}
+		}
+	}
 }
