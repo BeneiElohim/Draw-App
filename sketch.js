@@ -27,6 +27,8 @@ function setup() {
 	toolbox.addTool(new mirrorDrawTool());
 	toolbox.addTool(new ShapesTool());
 	toolbox.addTool(new ScissorTool());
+	toolbox.addTool(new BucketTool());
+	toolbox.addTool(new EraserTool());
 	background(255);
 
 }
