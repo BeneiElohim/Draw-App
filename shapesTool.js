@@ -59,12 +59,3 @@ function ShapesTool(){
 		})
 	};
 }
-
-//plot out a shape as a series of vertices
-// add a button for creating new vertices
-//add a button to swithc between new vertices and editing.
-//click the canvas to add a vertex
-// dont draw right away, add vertex to an array, then draw the shape
-//edit the vertices using a mouse drag
-// add a button to edit the vertices
-// give a button to save the shape
