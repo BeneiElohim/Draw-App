@@ -4,11 +4,6 @@ function ShapesTool(){
 	this.name = "shapes";
 	this.editMode = false;
 	this.currentShape = [];
-
-	//to smoothly draw we'll draw a line from the previous mouse location
-	//to the current mouse location. The following values store
-	//the locations from the last frame. They are -1 to start with because
-	//we haven't started drawing yet.
 	
 	this.draw = function(){
 		//if the mouse is pressed
