@@ -9,7 +9,6 @@ function ScissorTool() {
     if (mouseIsPressed && this.selectMode == 1) {
       this.selectedArea.x = mouseX;
       this.selectedArea.y = mouseY;
-      this.mouseDragged();
     }
   };
   this.populateOptions = function () {
@@ -33,6 +32,7 @@ function ScissorTool() {
     console.log("mouse dragged");
     console.log(this.selectedArea);
     if (this.selectMode == 1) {
+      console.log(this.selectMode, mouseX, mouseY);
       this.selectedArea.w = mouseX - this.selectedArea.x;
       this.selectedArea.h = mouseY - this.selectedArea.y;
 
@@ -45,5 +45,12 @@ function ScissorTool() {
         this.selectedArea.h *= -1;
       }
     }
+  };
+  this.unselectTool = function () {
+    select(".options").html(`<label for="sizeSlider">Brush Size</label>
+    <input type="range" id="sizeSlider" min="1" max="50" value="10" />
+
+    <label for="opacitySlider">Brush Opacity</label>
+    <input type="range" id="opacitySlider" min="0" max="255" value="255" />`);
   };
 }

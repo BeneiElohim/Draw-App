@@ -25,7 +25,7 @@
   <body>
     <div class="wrapper">
       <div class="box header">
-        My Drawing App
+        DrawJS
 
         <button id="clearButton">Clear</button>
         <button id="saveImageButton">Save Image</button>
@@ -33,7 +33,13 @@
       <div class="box" id="sidebar"></div>
       <div id="content"></div>
       <div class="box colourPalette"></div>
-      <div class="box options"></div>
+      <div class="box options">
+        <label for="sizeSlider">Brush Size</label>
+        <input type="range" id="sizeSlider" min="1" max="50" value="10" />
+
+        <label for="opacitySlider">Brush Opacity</label>
+        <input type="range" id="opacitySlider" min="0" max="255" value="255" />
+      </div>
     </div>
   </body>
 </html>

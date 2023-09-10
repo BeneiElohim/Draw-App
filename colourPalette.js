@@ -23,11 +23,26 @@ function ColourPalette() {
   ];
   //make the start colour be black
   this.selectedColour = "black";
+  this.opacity = 255;
+  this.size = 10;
 
   var self = this;
 
+  select("#sizeSlider").input(function () {
+    self.size = this.value(); // Update the brush size variable
+  });
+
+  // Event listener for the brush opacity slider
+  select("#opacitySlider").input(function () {
+    self.opacity = this.value(); // Update the brush opacity variable
+  });
+
   var colourClick = function () {
     //remove the old border
+    self.opacity = select("#opacitySlider").value();
+    self.size = select("#sizeSlider").value();
+    // Event listener for the brush size slider
+
     var current = select("#" + self.selectedColour + "Swatch");
     current.style("border", "0");
 
@@ -36,8 +51,12 @@ function ColourPalette() {
 
     //set the selected colour and fill and stroke
     self.selectedColour = c;
-    fill(c);
+    console.log(c);
+    console.log(self.opacity);
+    console.log(self.size);
+    fill(c, c, c, self.opacity);
     stroke(c);
+    strokeWeight(self.size);
 
     //add a new border to the selected colour
     this.style("border", "2px solid blue");

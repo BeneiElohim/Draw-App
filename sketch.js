@@ -41,3 +41,12 @@ function draw() {
     alert("it doesn't look like your tool has a draw method!");
   }
 }
+function mouseDragged() {
+  //call the draw function from the selected tool.
+  //hasOwnProperty is a javascript function that tests
+  //if an object contains a particular method or property
+  //if there isn't a draw method the app will alert the user
+  if (toolbox.selectedTool.hasOwnProperty("mouseDragged")) {
+    toolbox.selectedTool.mouseDragged();
+  }
+}
