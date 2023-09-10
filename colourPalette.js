@@ -89,3 +89,4 @@ function ColourPalette() {
   //call the loadColours function now it is declared
   this.loadColours();
 }
+//Currently, the values of the brush size and opacity are stored in the ColourPalette object. They are getting updated, but adding them to stroke and strokeweight had no effect on any drawings.
