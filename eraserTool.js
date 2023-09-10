@@ -49,6 +49,6 @@ function EraserTool() {
     });
   };
   this.unselectTool = function () {
-    console.log("eraser tool unselected");
+    helpers.createBrushSliders();
   };
 }

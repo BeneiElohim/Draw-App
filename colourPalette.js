@@ -51,6 +51,7 @@ function ColourPalette() {
 
     //set the selected colour and fill and stroke
     self.selectedColour = c;
+    currentColor = c;
     console.log(c);
     console.log(self.opacity);
     console.log(self.size);

@@ -36,4 +36,8 @@ function LineToTool() {
       startMouseY = -1;
     }
   };
+
+  this.populateOptions = function () {
+    createBrushSliders();
+  };
 }

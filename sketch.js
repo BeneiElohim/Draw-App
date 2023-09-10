@@ -4,6 +4,7 @@ var toolbox = null;
 var colourP = null;
 var helpers = null;
 var c;
+let currentColor = "black";
 
 function setup() {
   //create a canvas to fill the content div from index.html
