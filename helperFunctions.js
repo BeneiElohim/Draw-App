@@ -40,5 +40,8 @@ function populateSpraySliders() {
     <input type="range" id="spreadSlider" min="1" max="50" value="10" />
   
     <label for="Point Slider">Points</label>
-    <input type="range" id="pointSlider" min="0" max="30" value="13" />`);
+    <input type="range" id="pointSlider" min="0" max="30" value="13" />
+    <button id='squareSprayButton'>Square</button>
+    <button id='roundSprayButton'>Round</button>`);
+  console.log("populated spray sliders");
 }
