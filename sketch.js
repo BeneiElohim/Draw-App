@@ -11,6 +11,7 @@ function setup() {
   canvasContainer = select("#content");
   c = createCanvas(canvasContainer.size().width, canvasContainer.size().height);
   c.parent("content");
+  pixelDensity(1);
 
   //create helper functions and the colour palette
   helpers = new HelperFunctions();

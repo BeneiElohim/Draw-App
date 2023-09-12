@@ -38,11 +38,6 @@ function ColourPalette() {
   });
 
   var colourClick = function () {
-    //remove the old border
-    self.opacity = select("#opacitySlider").value();
-    self.size = select("#sizeSlider").value();
-    // Event listener for the brush size slider
-
     var current = select("#" + self.selectedColour + "Swatch");
     current.style("border", "0");
 
