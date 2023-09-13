@@ -59,5 +59,6 @@ function ShapesTool() {
         editButton.html("Stop Editing");
       }
     });
+    brushControllers = false;
   };
 }

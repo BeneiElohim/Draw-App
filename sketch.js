@@ -45,12 +45,11 @@ function draw() {
     if (brushControllers) {
       brushSize = select("#sizeSlider").value();
       currentAlpha = select("#opacitySlider").value();
-
       //update the brush size and opacity at runtime
-      fill(mapColorToRGB(currentColor));
-      stroke(mapColorToRGB(currentColor));
-      strokeWeight(brushSize);
     }
+    fill(mapColorToRGB(currentColor));
+    stroke(mapColorToRGB(currentColor));
+    strokeWeight(brushSize);
   } else {
     alert("it doesn't look like your tool has a draw method!");
   }

@@ -29,6 +29,7 @@ function BucketTool() {
       ];
 
       if (!self.arrayEquals(color, seedColor)) {
+        console.log("not equal");
         continue;
       }
 
@@ -43,12 +44,14 @@ function BucketTool() {
   };
 
   this.populateOptions = function () {
+    brushControllers = false;
     select(".options").html("");
   };
   this.unselectTool = function () {
     createBrushSliders();
   };
   this.arrayEquals = function (a, b) {
+    console.log("arrayEquals");
     return (
       Array.isArray(a) &&
       Array.isArray(b) &&
@@ -60,6 +63,7 @@ function BucketTool() {
   this.expandToNeighbours = function (queue, current) {
     x = current.x;
     y = current.y;
+    console.log("expandToNeighbours");
 
     if (x - 1 > 0) {
       queue.push(createVector(x - 1, y));

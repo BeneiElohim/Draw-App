@@ -133,5 +133,7 @@ function mirrorDrawTool() {
         button.html("Make Horizontal");
       }
     });
+    createBrushSliders();
+    brushControllers = true;
   };
 }
