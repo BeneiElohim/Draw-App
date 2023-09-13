@@ -5,8 +5,8 @@ let colourP = null;
 let helpers = null;
 let c;
 let currentColor = "black";
-let currentAlpha = 150;
-let brushSize = 10;
+let currentAlpha = 255;
+let brushSize = 5;
 let brushControllers = true;
 
 function setup() {
@@ -45,6 +45,11 @@ function draw() {
     if (brushControllers) {
       brushSize = select("#sizeSlider").value();
       currentAlpha = select("#opacitySlider").value();
+
+      //update the brush size and opacity at runtime
+      fill(mapColorToRGB(currentColor));
+      stroke(mapColorToRGB(currentColor));
+      strokeWeight(brushSize);
     }
   } else {
     alert("it doesn't look like your tool has a draw method!");
