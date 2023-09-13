@@ -1,9 +1,9 @@
 //global variables that will store the toolbox colour palette
 //amnd the helper functions
-var toolbox = null;
-var colourP = null;
-var helpers = null;
-var c;
+let toolbox = null;
+let colourP = null;
+let helpers = null;
+let c;
 let currentColor = "black";
 let currentAlpha = 150;
 let brushSize = 10;
