@@ -9,12 +9,12 @@ function EraserTool() {
     if (mouseIsPressed) {
       if (this.eraserMode === "square") {
         // Square eraser
-        fill(255);
+        fill(backgroundColor);
         noStroke();
         rect(mouseX, mouseY, this.eraserRadius, this.eraserRadius);
       } else if (this.eraserMode === "round") {
         // Round eraser
-        fill(255);
+        fill(backgroundColor);
         noStroke();
         ellipse(mouseX, mouseY, this.eraserRadius, this.eraserRadius);
       }
@@ -34,6 +34,7 @@ function EraserTool() {
          <option value='125'>125</option>
        </select>`
     );
+    brushControllers = false;
 
     select("#squareEraserButton").mousePressed(() => {
       this.eraserMode = "square";

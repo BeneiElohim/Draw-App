@@ -14,7 +14,11 @@ function HelperFunctions() {
   //event handler for the save image button. saves the canvsa to the
   //local file system.
   select("#saveImageButton").mouseClicked(function () {
-    saveCanvas("myPicture", "jpg");
+    saveCanvas("myPicture", "json");
+  });
+  select("#setBackgroundColorButton").mouseClicked(function () {
+    background(currentColor);
+    backgroundColor = currentColor;
   });
 }
 function mousePressonCanvas(canvas) {

@@ -8,13 +8,13 @@ let currentColor = "black";
 let currentAlpha = 255;
 let brushSize = 5;
 let brushControllers = true;
+let backgroundColor = "white";
 
 function setup() {
   //create a canvas to fill the content div from index.html
   canvasContainer = select("#content");
   c = createCanvas(canvasContainer.size().width, canvasContainer.size().height);
   c.parent("content");
-  pixelDensity(1);
 
   //create helper functions and the colour palette
   helpers = new HelperFunctions();
@@ -32,7 +32,7 @@ function setup() {
   toolbox.addTool(new ScissorTool());
   toolbox.addTool(new BucketTool());
   toolbox.addTool(new EraserTool());
-  background(255);
+  background(backgroundColor);
 }
 
 function draw() {
@@ -40,7 +40,7 @@ function draw() {
   //hasOwnProperty is a javascript function that tests
   //if an object contains a particular method or property
   //if there isn't a draw method the app will alert the user
-  if (toolbox.selectedTool.hasOwnProperty("draw")) {
+  if (toolbox.selectedTool.hasOwnProperty("draw") && mousePressonCanvas(c)) {
     toolbox.selectedTool.draw();
     if (brushControllers) {
       brushSize = select("#sizeSlider").value();
@@ -50,8 +50,6 @@ function draw() {
     fill(mapColorToRGB(currentColor));
     stroke(mapColorToRGB(currentColor));
     strokeWeight(brushSize);
-  } else {
-    alert("it doesn't look like your tool has a draw method!");
   }
 }
 function mouseDragged() {
