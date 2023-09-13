@@ -5,6 +5,9 @@ var colourP = null;
 var helpers = null;
 var c;
 let currentColor = "black";
+let currentAlpha = 150;
+let brushSize = 10;
+let brushControllers = true;
 
 function setup() {
   //create a canvas to fill the content div from index.html
@@ -39,6 +42,10 @@ function draw() {
   //if there isn't a draw method the app will alert the user
   if (toolbox.selectedTool.hasOwnProperty("draw")) {
     toolbox.selectedTool.draw();
+    if (brushControllers) {
+      brushSize = select("#sizeSlider").value();
+      currentAlpha = select("#opacitySlider").value();
+    }
   } else {
     alert("it doesn't look like your tool has a draw method!");
   }

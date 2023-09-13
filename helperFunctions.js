@@ -51,3 +51,31 @@ function populateSpraySliders() {
 
   console.log("populated spray sliders");
 }
+function mapColorToRGB(colorName) {
+  const colorMappings = {
+    black: color(0, 0, 0, currentAlpha),
+    silver: color(192, 192, 192, currentAlpha),
+    gray: color(128, 128, 128, currentAlpha),
+    white: color(255, 255, 255, currentAlpha),
+    maroon: color(128, 0, 0, currentAlpha),
+    red: color(255, 0, 0, currentAlpha),
+    purple: color(128, 0, 128, currentAlpha),
+    orange: color(255, 165, 0, currentAlpha),
+    pink: color(255, 192, 203, currentAlpha),
+    fuchsia: color(255, 0, 255, currentAlpha),
+    green: color(0, 128, 0, currentAlpha),
+    lime: color(0, 255, 0, currentAlpha),
+    olive: color(128, 128, 0, currentAlpha),
+    yellow: color(255, 255, 0, currentAlpha),
+    navy: color(0, 0, 128, currentAlpha),
+    blue: color(0, 0, 255, currentAlpha),
+    teal: color(0, 128, 128, currentAlpha),
+    aqua: color(0, 255, 255, currentAlpha),
+  };
+
+  if (colorMappings.hasOwnProperty(colorName)) {
+    return colorMappings[colorName];
+  } else {
+    return color(0, 0, 0); // Return a default RGB color for unknown color names
+  }
+}
