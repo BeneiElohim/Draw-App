@@ -4,17 +4,17 @@ let toolbox = null;
 let colourP = null;
 let helpers = null;
 let c;
-let currentColor = "black";
+let currentColor = 'black';
 let currentAlpha = 255;
 let brushSize = 5;
 let brushControllers = true;
-let backgroundColor = "white";
+let backgroundColor = 'white';
 function setup() {
   //create a canvas to fill the content div from index.html
   pixelDensity(1);
-  canvasContainer = select("#content");
+  canvasContainer = select('#content');
   c = createCanvas(canvasContainer.size().width, canvasContainer.size().height);
-  c.parent("content");
+  c.parent('content');
 
   //create helper functions and the colour palette
   helpers = new HelperFunctions();
@@ -32,6 +32,7 @@ function setup() {
   toolbox.addTool(new ScissorTool());
   toolbox.addTool(new BucketTool());
   toolbox.addTool(new EraserTool());
+  toolbox.addTool(new TextTool());
   background(backgroundColor);
 }
 
@@ -40,11 +41,11 @@ function draw() {
   //hasOwnProperty is a javascript function that tests
   //if an object contains a particular method or property
   //if there isn't a draw method the app will alert the user
-  if (toolbox.selectedTool.hasOwnProperty("draw") && mousePressonCanvas(c)) {
+  if (toolbox.selectedTool.hasOwnProperty('draw') && mousePressonCanvas(c)) {
     toolbox.selectedTool.draw();
     if (brushControllers) {
-      brushSize = select("#sizeSlider").value();
-      currentAlpha = select("#opacitySlider").value();
+      brushSize = select('#sizeSlider').value();
+      currentAlpha = select('#opacitySlider').value();
       //update the brush size and opacity at runtime
     }
     fill(mapColorToRGB(currentColor));
@@ -57,7 +58,7 @@ function mouseDragged() {
   //hasOwnProperty is a javascript function that tests
   //if an object contains a particular method or property
   //if there isn't a draw method the app will alert the user
-  if (toolbox.selectedTool.hasOwnProperty("mouseDragged")) {
+  if (toolbox.selectedTool.hasOwnProperty('mouseDragged')) {
     toolbox.selectedTool.mouseDragged();
   }
 }
