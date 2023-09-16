@@ -9,7 +9,6 @@ let currentAlpha = 255;
 let brushSize = 5;
 let brushControllers = true;
 let backgroundColor = "white";
-
 function setup() {
   //create a canvas to fill the content div from index.html
   pixelDensity(1);
