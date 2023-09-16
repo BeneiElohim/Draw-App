@@ -53,7 +53,6 @@ function populateSpraySliders() {
     <button id='squareSprayButton'>Square</button>
     <button id='roundSprayButton'>Round</button>`);
 
-  console.log("populated spray sliders");
 }
 function mapColorToRGB(colorName) {
   const colorMappings = {

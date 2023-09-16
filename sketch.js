@@ -12,6 +12,7 @@ let backgroundColor = "white";
 
 function setup() {
   //create a canvas to fill the content div from index.html
+  pixelDensity(1);
   canvasContainer = select("#content");
   c = createCanvas(canvasContainer.size().width, canvasContainer.size().height);
   c.parent("content");

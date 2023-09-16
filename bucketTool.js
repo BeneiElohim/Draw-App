@@ -2,45 +2,42 @@ function BucketTool() {
   //set an icon and a name for the object
   this.icon = "assets/bucket.png";
   this.name = "bucket";
-  this.targetColor = "black";
 
   let self = this;
-  this.floodFill = function (seed, fillColor) {
-    loadPixels();
 
-    index = 4 * (width * seed.y + seed.x);
-    seedColor = [
-      pixels[index],
-      pixels[index + 1],
-      pixels[index + 2],
-      pixels[index + 3],
-    ];
-    let queue = [];
-    queue.push(seed);
-
-    while (queue.length) {
-      let current = queue.shift();
-      index = 4 * (width * current.y + current.x);
-      let color = [
-        pixels[index],
-        pixels[index + 1],
-        pixels[index + 2],
-        pixels[index + 3],
-      ];
-
-      if (!self.arrayEquals(color, seedColor)) {
-        console.log("not equal");
-        continue;
+  this.draw = function () {
+    if (mouseIsPressed) {
+      if (mousePressonCanvas(c)) {
+        loadPixels();
+        self.floodFill( mouseX, mouseY, get(mouseX, mouseY), mapColorToRGB(currentColor));
+        updatePixels();
       }
-
-      for (let i = 0; i < 4; i++) {
-        pixels[index + i] = fillColor[0 + i];
-      }
-
-      queue = self.expandToNeighbours(queue, current);
     }
-    console.log("done");
-    updatePixels();
+  };
+  this.floodFill = function (x, y, targetColor, replacementColor) {
+    if (targetColor != replacementColor) {
+      if (get(x + 1, y).toString() === targetColor.toString()) {
+        /* self.floodFill(x + 1, y, targetColor, replacementColor); */
+        console.log
+      }
+      if (get(x - 1, y).toString() === targetColor.toString()) {
+        /* self.floodFill(x - 1, y, targetColor, replacementColor); */
+        console.log
+      }
+      if (get(x, y + 1).toString() === targetColor.toString()) {
+        /* self.floodFill(x, y + 1, targetColor, replacementColor); */
+        console.log
+      }
+      if (get(x, y - 1).toString() === targetColor.toString()) {
+        /* self.floodFill(x, y - 1, targetColor, replacementColor); */
+        console.log
+      }
+      set(x, y, replacementColor);
+    }
+    if (targetColor == replacementColor) {
+      console.log("targetColor == replacementColor")
+      return;
+    }
   };
 
   this.populateOptions = function () {
@@ -50,41 +47,6 @@ function BucketTool() {
   this.unselectTool = function () {
     createBrushSliders();
   };
-  this.arrayEquals = function (a, b) {
-    console.log("arrayEquals");
-    return (
-      Array.isArray(a) &&
-      Array.isArray(b) &&
-      a.length === b.length &&
-      a.every((val, index) => val === b[index])
-    );
-  };
 
-  this.expandToNeighbours = function (queue, current) {
-    x = current.x;
-    y = current.y;
-    console.log("expandToNeighbours");
-
-    if (x - 1 > 0) {
-      queue.push(createVector(x - 1, y));
-    }
-    if (x + 1 < width) {
-      queue.push(createVector(x + 1, y));
-    }
-    if (y - 1 > 0) {
-      queue.push(createVector(x, y - 1));
-    }
-    if (y + 1 < height) {
-      queue.push(createVector(x, y + 1));
-    }
-
-    return queue;
-  };
-  this.draw = function () {
-    if (mouseIsPressed) {
-      if (mousePressonCanvas(c)) {
-        self.floodFill(createVector(mouseX, mouseY), currentColor);
-      }
-    }
-  };
+  
 }
