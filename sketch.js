@@ -36,15 +36,6 @@ function setup() {
 }
 
 function draw() {
-  //call the draw function from the selected tool.
-  //hasOwnProperty is a javascript function that tests
-  //if an object contains a particular method or property
-  //if there isn't a draw method the app will alert the user
-  textSize(20);
-  text('Current Tool: ' + toolbox.selectedTool.name, 10, 20);
-  text('Current Color: ' + currentColor, 10, 40);
-  text('Current Alpha: ' + currentAlpha, 10, 60);
-  textFont('Arial');
   if (toolbox.selectedTool.hasOwnProperty('draw') && mousePressonCanvas(c)) {
     toolbox.selectedTool.draw();
     if (brushControllers) {
@@ -52,12 +43,13 @@ function draw() {
       currentAlpha = select('#opacitySlider').value();
       //update the brush size and opacity at runtime
     }
+    for (let i = 0; i < toolbox.objects.length; i++) {
+      toolbox.objects[i].draw();
+      console.log('drawing object');
+    }
     fill(mapColorToRGB(currentColor));
     stroke(mapColorToRGB(currentColor));
     strokeWeight(brushSize);
-  }
-  for (let i = 0; i < toolbox.objects.length; i++) {
-    toolbox.objects[i].draw();
   }
 }
 function mouseDragged() {

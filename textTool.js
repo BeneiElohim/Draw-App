@@ -3,13 +3,15 @@ function TextTool() {
   this.name = 'TextTool';
   this.isTyping = false;
   let textInput;
-  self = this;
+  let self = this;
 
   this.draw = function () {
     if (mouseIsPressed && mousePressonCanvas(c) && !this.isTyping) {
       this.isTyping = true;
       textInput = createInput();
-      textInput.position(mouseX, mouseY);
+      let inputX = mouseX;
+      let inputY = mouseY;
+      textInput.position(inputX, inputY);
       textInput.size(200, 20);
       textInput.style('background-color', 'white');
       let writeButton = select('#finishWriting');
@@ -17,8 +19,8 @@ function TextTool() {
         console.log(textInput.value());
         let newTextBox = new TextBox(
           brushSize,
-          mouseX,
-          mouseY,
+          inputX,
+          inputY,
           textInput.value(),
           currentColor
         );
@@ -49,8 +51,8 @@ function TextBox(size, x, y, inputText, textColor) {
   let self = this;
 
   this.draw = function () {
-    textSize(self.size);
-    text(self.text, self.x, self.y);
-    fill(mapColorToRGB(self.color));
+    textSize(this.size);
+    fill(mapColorToRGB(this.color));
+    text(this.text, this.x, this.y);
   };
 }
