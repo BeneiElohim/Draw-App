@@ -10,14 +10,12 @@ function TextTool() {
   this.draw = function () {
     if (mouseIsPressed && mousePressonCanvas(c) && !this.isTyping) {
       self.isTyping = true;
-      console.log(self.isTyping);
       let textInput = createInput();
       let inputX = mouseX;
       let inputY = mouseY;
 
       textInput.position(inputX, inputY);
       textInput.size(200, 20);
-      textInput.style('background-color', 'white');
       textInput.elt.focus();
       let writeButton = select('#finishWriting');
       let textCurrentColor = currentColor;
