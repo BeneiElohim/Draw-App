@@ -2,24 +2,24 @@
 function ColourPalette() {
   //a list of web colour strings
   this.colours = [
-    "black",
-    "silver",
-    "gray",
-    "white",
-    "maroon",
-    "red",
-    "purple",
-    "orange",
-    "pink",
-    "fuchsia",
-    "green",
-    "lime",
-    "olive",
-    "yellow",
-    "navy",
-    "blue",
-    "teal",
-    "aqua",
+    'black',
+    'silver',
+    'gray',
+    'white',
+    'maroon',
+    'red',
+    'purple',
+    'orange',
+    'pink',
+    'fuchsia',
+    'green',
+    'lime',
+    'olive',
+    'yellow',
+    'navy',
+    'blue',
+    'teal',
+    'aqua',
   ];
   //make the start colour be black
 
@@ -27,42 +27,37 @@ function ColourPalette() {
 
   var colourClick = function () {
     //remove the old border
-    var current = select("#" + currentColor + "Swatch");
-    current.style("border", "0");
+    var current = select('#' + currentColor + 'Swatch');
+    current.style('border', '0');
 
     //get the new colour from the id of the clicked element
-    currentColor = this.id().split("Swatch")[0];
+    currentColor = this.id().split('Swatch')[0];
 
-    fill(mapColorToRGB(currentColor));
+    /*  fill(mapColorToRGB(currentColor)); */
     stroke(mapColorToRGB(currentColor));
 
     //add a new border to the selected colour
-    this.style("border", "2px solid blue");
+    this.style('border', '2px solid blue');
   };
 
   //load in the colours
   this.loadColours = function () {
-    //set the fill and stroke properties to be black at the start of the programme
-    //running
-    fill(mapColorToRGB(currentColor), currentAlpha);
-    stroke(mapColorToRGB(currentColor), currentAlpha);
-
     //for each colour create a new div in the html for the colourSwatches
     for (var i = 0; i < this.colours.length; i++) {
-      var colourID = this.colours[i] + "Swatch";
+      var colourID = this.colours[i] + 'Swatch';
 
       //using JQuery add the swatch to the palette and set its background colour
       //to be the colour value.
       var colourSwatch = createDiv();
-      colourSwatch.class("colourSwatches");
+      colourSwatch.class('colourSwatches');
       colourSwatch.id(colourID);
 
-      select(".colourPalette").child(colourSwatch);
-      select("#" + colourID).style("background-color", this.colours[i]);
+      select('.colourPalette').child(colourSwatch);
+      select('#' + colourID).style('background-color', this.colours[i]);
       colourSwatch.mouseClicked(colourClick);
     }
 
-    select(".colourSwatches").style("border", "2px solid blue");
+    select('.colourSwatches').style('border', '2px solid blue');
   };
   //call the loadColours function now it is declared
   this.loadColours();

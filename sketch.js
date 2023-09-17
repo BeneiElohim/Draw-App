@@ -45,7 +45,6 @@ function draw() {
     }
     for (let i = 0; i < toolbox.objects.length; i++) {
       toolbox.objects[i].draw();
-      console.log('drawing object');
     }
     fill(mapColorToRGB(currentColor));
     stroke(mapColorToRGB(currentColor));
