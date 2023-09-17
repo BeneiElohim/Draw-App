@@ -33,8 +33,7 @@ function ColourPalette() {
     //get the new colour from the id of the clicked element
     currentColor = this.id().split('Swatch')[0];
 
-    /*  fill(mapColorToRGB(currentColor)); */
-    stroke(mapColorToRGB(currentColor));
+    stroke(mapColorToRGB(currentColor)); //update the stroke colour with RGB values mapped from the colour name
 
     //add a new border to the selected colour
     this.style('border', '2px solid blue');

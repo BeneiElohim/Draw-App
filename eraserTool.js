@@ -1,28 +1,43 @@
+/**
+ * EraserTool Constructor
+ * This constructor creates an EraserTool object for a drawing application.
+ * The tool allows users to erase parts of the canvas with either a square or round eraser.
+ * @constructor
+ */
 function EraserTool() {
-  //set an icon and a name for the object
-  this.icon = "assets/eraser.png";
-  this.name = "eraser";
-  this.eraserMode = "square";
-  this.eraserRadius = 3; // Default radius
+  // Set an icon and a name for the object
+  this.icon = 'assets/eraser.png';
+  this.name = 'eraser';
+  this.eraserMode = 'square'; // Default eraser mode
+  this.eraserRadius = 3; // Default eraser radius
 
+  /**
+   * Draw method
+   * Handles the drawing logic for the EraserTool.
+   * Erases parts of the canvas when the mouse is pressed, based on the selected eraser mode.
+   */
   this.draw = function () {
     if (mouseIsPressed) {
-      if (this.eraserMode === "square") {
+      if (this.eraserMode === 'square') {
         // Square eraser
-        fill(backgroundColor);
+        fill(backgroundColor); // Fill with the background color to erase
         noStroke();
         rect(mouseX, mouseY, this.eraserRadius, this.eraserRadius);
-      } else if (this.eraserMode === "round") {
+      } else if (this.eraserMode === 'round') {
         // Round eraser
-        fill(backgroundColor);
+        fill(backgroundColor); // Fill with the background color to erase
         noStroke();
         ellipse(mouseX, mouseY, this.eraserRadius, this.eraserRadius);
       }
     }
   };
 
+  /**
+   * Populate Options method
+   * Populates the options panel with buttons for selecting eraser mode and adjusting eraser radius.
+   */
   this.populateOptions = function () {
-    select(".options").html(
+    select('.options').html(
       `<button id='squareEraserButton'>Square Eraser</button> <button id='roundEraserButton'>Round Eraser</button>
        <label for='eraserRadiusSelect' style='font-size:20px '>Eraser Radius:</label>
        <select id='eraserRadiusSelect'>
@@ -36,20 +51,26 @@ function EraserTool() {
     );
     brushControllers = false;
 
-    select("#squareEraserButton").mousePressed(() => {
-      this.eraserMode = "square";
+    // Event listeners for selecting eraser mode
+    select('#squareEraserButton').mousePressed(() => {
+      this.eraserMode = 'square';
     });
 
-    select("#roundEraserButton").mousePressed(() => {
-      this.eraserMode = "round";
+    select('#roundEraserButton').mousePressed(() => {
+      this.eraserMode = 'round';
     });
 
-    // Handle eraser radius selection
-    select("#eraserRadiusSelect").changed(() => {
-      this.eraserRadius = select("#eraserRadiusSelect").value();
+    // Event listener for adjusting eraser radius
+    select('#eraserRadiusSelect').changed(() => {
+      this.eraserRadius = select('#eraserRadiusSelect').value();
     });
   };
+
+  /**
+   * Unselect Tool method
+   * Performs any necessary cleanup or UI adjustments when switching tools.
+   */
   this.unselectTool = function () {
-    createBrushSliders();
+    createBrushSliders(); // Create brush sliders or perform cleanup specific to your application
   };
 }

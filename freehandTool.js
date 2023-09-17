@@ -1,3 +1,7 @@
+////////////////////////////////////////////
+// Freehand Tool with brushSize  and brush
+/////////////opacity controls//
+
 function FreehandTool() {
   // Set an icon and a name for the object
   this.icon = 'assets/freehand.jpg';
@@ -24,7 +28,7 @@ function FreehandTool() {
       // If we already have values for previousX and Y, draw a line from
       // there to the current mouse location
       else {
-        strokeWeight(brushSize);
+        strokeWeight(brushSize); // added the strokeWeight to add brushSize controls
         line(previousMouseX, previousMouseY, mouseX, mouseY);
         previousMouseX = mouseX;
         previousMouseY = mouseY;
@@ -38,6 +42,6 @@ function FreehandTool() {
     }
   };
   this.populateOptions = function () {
-    brushControllers = true;
+    brushControllers = true; // added to show the brush controllers when this tool is selected
   };
 }

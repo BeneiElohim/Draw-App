@@ -1,3 +1,8 @@
+//////////////////////////////////////////////
+//////////////////////////////////////////////
+//                 TEXT TOOL                //
+//////////////////////////////////////////////
+
 function TextTool() {
   this.icon = 'assets/text.png';
   this.name = 'TextTool';
@@ -10,6 +15,8 @@ function TextTool() {
   this.draw = function () {
     if (mouseIsPressed && mousePressonCanvas(c) && !this.isTyping) {
       self.isTyping = true;
+
+      // Create a text input element for typing
       let textInput = createInput();
       let inputX = mouseX;
       let inputY = mouseY;
@@ -22,6 +29,7 @@ function TextTool() {
       let selectedTextSizeInp = this.selectedTextSize;
       writeButton.mousePressed(() => {
         if (textInput != '') {
+          // Create a TextBox object and add it to the toolbox objects array
           toolbox.objects.push(
             new TextBox(
               selectedTextSizeInp,
@@ -35,13 +43,6 @@ function TextTool() {
           self.isTyping = false;
         }
       });
-      function removeTextInput() {
-        if (textInput && self.isTyping) {
-          textInput.remove();
-          self.isTyping = false;
-        }
-      }
-
       // Add event listener to remove textInput when clicking outside
       select('#textSizeSelect').changed(() => {
         this.selectedTextSize = select('#textSizeSelect').value();
@@ -70,6 +71,17 @@ function TextTool() {
     brushControllers = true;
   };
 }
+
+/**
+ * TextBox Constructor
+ * This constructor creates a TextBox object to display text on the canvas.
+ * @param {number} size - The font size of the text.
+ * @param {number} x - The x-coordinate of the text.
+ * @param {number} y - The y-coordinate of the text.
+ * @param {string} inputText - The text content.
+ * @param {p5.Color} textColor - The color of the text.
+ * @constructor
+ */
 function TextBox(size, x, y, inputText, textColor) {
   this.size = Number(size);
   this.x = x;
@@ -78,13 +90,17 @@ function TextBox(size, x, y, inputText, textColor) {
   this.color = textColor;
   let self = this;
 
+  /**
+   * Draw method
+   * Handles the drawing logic for the TextBox.
+   * Checks if the eraser tool is selected and erases the TextBox if it is and is close to the mouse.
+   */
   this.draw = function () {
     if (
       toolbox.selectedTool.name == 'eraser' &&
       mouseIsPressed &&
       mouseCloseToObject(self.x, self.y, mouseX, mouseY)
     ) {
-      console.log('erase');
       self.erase();
     }
     textSize(self.size);
@@ -92,6 +108,11 @@ function TextBox(size, x, y, inputText, textColor) {
     strokeWeight(0);
     text(self.text, self.x, self.y);
   };
+
+  /**
+   * Erase method
+   * Clears the text content of the TextBox.
+   */
   this.erase = function () {
     self.text = '';
   };

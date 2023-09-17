@@ -1,5 +1,10 @@
+////////////////////////////////////////
+//  ITP-2 FINAL PROJECT SUBMISSION    //
+//  Name:   İsmail Mert Tarihç        //
+////////////////////////////////////////
+// This is the main file of the project, that sets up the canvas and the tools.
+
 //global variables that will store the toolbox colour palette
-//amnd the helper functions
 let toolbox = null;
 let colourP = null;
 let helpers = null;
@@ -28,17 +33,25 @@ function setup() {
   toolbox.addTool(new SprayCanTool());
   toolbox.addTool(new mirrorDrawTool());
   toolbox.addTool(new ShapesTool());
-  toolbox.addTool(new ScissorTool());
-  toolbox.addTool(new BucketTool());
+  /*   toolbox.addTool(new ScissorTool()); */ // not working, commented out for now
+  /* toolbox.addTool(new BucketTool()); */ // not working, commented out for now
   toolbox.addTool(new EraserTool());
   toolbox.addTool(new TextTool());
   background(backgroundColor);
 }
-
+////////////////////////////////////////
+//  DRAW FUNCTION                     //
+////////////////////////////////////////
+// We basically have 3 parts to this draw function:
+// 1. Draw method of the selected tool
+// 2. Draw method of the objects class, which holds the text objects but can be expanded to hold other objects created by other tools such as shapes, if the project is expanded.
+// 3. Fill, stroke and strokeWeight settings for the brush which needs to work outside the colorPalette class.
 function draw() {
+  // if the mouse is pressed call the draw function from the selected tool.
   if (toolbox.selectedTool.hasOwnProperty('draw') && mousePressonCanvas(c)) {
     toolbox.selectedTool.draw();
     if (brushControllers) {
+      // if the brush controllers are on, make sure to pick up the values from the sliders
       brushSize = select('#sizeSlider').value();
       currentAlpha = select('#opacitySlider').value();
       //update the brush size and opacity at runtime
@@ -51,14 +64,5 @@ function draw() {
     fill(mapColorToRGB(currentColor));
     stroke(mapColorToRGB(currentColor));
     strokeWeight(brushSize);
-  }
-}
-function mouseDragged() {
-  //call the draw function from the selected tool.
-  //hasOwnProperty is a javascript function that tests
-  //if an object contains a particular method or property
-  //if there isn't a draw method the app will alert the user
-  if (toolbox.selectedTool.hasOwnProperty('mouseDragged')) {
-    toolbox.selectedTool.mouseDragged();
   }
 }

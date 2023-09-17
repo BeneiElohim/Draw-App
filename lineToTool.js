@@ -2,8 +2,8 @@
 //the a line to the current mouse position before drawing the line to the
 //pixel array.
 function LineToTool() {
-  this.icon = "assets/lineTo.jpg";
-  this.name = "LineTo";
+  this.icon = 'assets/lineTo.jpg';
+  this.name = 'LineTo';
 
   var startMouseX = -1;
   var startMouseY = -1;
@@ -24,7 +24,7 @@ function LineToTool() {
         //update the screen with the saved pixels to hide any previous
         //line between mouse pressed and released
         updatePixels();
-        strokeWeight(brushSize);
+        strokeWeight(brushSize); // added the strokeWeight to add brushSize controls
         line(startMouseX, startMouseY, mouseX, mouseY);
       }
     } else if (drawing) {
@@ -37,6 +37,7 @@ function LineToTool() {
     }
   };
 
+  //make sure to have the brush size and opacity sliders available when this tool is selected
   this.populateOptions = function () {
     createBrushSliders();
   };
