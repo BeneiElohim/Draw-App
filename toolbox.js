@@ -4,15 +4,16 @@ function Toolbox() {
 
   this.tools = [];
   this.selectedTool = null;
+  this.objects = [];
 
   var toolbarItemClick = function () {
     //remove any existing borders
-    var items = selectAll(".sideBarItem");
+    var items = selectAll('.sideBarItem');
     for (var i = 0; i < items.length; i++) {
-      items[i].style("border", "0");
+      items[i].style('border', '0');
     }
 
-    var toolName = this.id().split("sideBarItem")[0];
+    var toolName = this.id().split('sideBarItem')[0];
     self.selectTool(toolName);
 
     //call loadPixels to make sure most recent changes are saved to pixel array
@@ -22,17 +23,17 @@ function Toolbox() {
   //add a new tool icon to the html page
   var addToolIcon = function (icon, name) {
     var sideBarItem = createDiv("<img src='" + icon + "'></div>");
-    sideBarItem.class("sideBarItem");
-    sideBarItem.id(name + "sideBarItem");
-    sideBarItem.parent("sidebar");
+    sideBarItem.class('sideBarItem');
+    sideBarItem.id(name + 'sideBarItem');
+    sideBarItem.parent('sidebar');
     sideBarItem.mouseClicked(toolbarItemClick);
   };
 
   //add a tool to the tools array
   this.addTool = function (tool) {
     //check that the object tool has an icon and a name
-    if (!tool.hasOwnProperty("icon") || !tool.hasOwnProperty("name")) {
-      alert("make sure your tool has both a name and an icon");
+    if (!tool.hasOwnProperty('icon') || !tool.hasOwnProperty('name')) {
+      alert('make sure your tool has both a name and an icon');
     }
     this.tools.push(tool);
     addToolIcon(tool.icon, tool.name);
@@ -41,6 +42,9 @@ function Toolbox() {
     if (this.selectedTool == null) {
       this.selectTool(tool.name);
     }
+  };
+  this.addObject = function (object) {
+    self.objects.push(object);
   };
 
   this.selectTool = function (toolName) {
@@ -51,19 +55,19 @@ function Toolbox() {
         //if the tool has an unselectTool method run it.
         if (
           this.selectedTool != null &&
-          this.selectedTool.hasOwnProperty("unselectTool")
+          this.selectedTool.hasOwnProperty('unselectTool')
         ) {
           this.selectedTool.unselectTool();
         }
         //select the tool and highlight it on the toolbar
         this.selectedTool = this.tools[i];
-        select("#" + toolName + "sideBarItem").style(
-          "border",
-          "2px solid blue"
+        select('#' + toolName + 'sideBarItem').style(
+          'border',
+          '2px solid blue'
         );
 
         //if the tool has an options area. Populate it now.
-        if (this.selectedTool.hasOwnProperty("populateOptions")) {
+        if (this.selectedTool.hasOwnProperty('populateOptions')) {
           this.selectedTool.populateOptions();
         }
       }

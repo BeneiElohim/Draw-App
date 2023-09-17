@@ -11,7 +11,6 @@ let brushControllers = true;
 let backgroundColor = 'white';
 function setup() {
   //create a canvas to fill the content div from index.html
-  pixelDensity(1);
   canvasContainer = select('#content');
   c = createCanvas(canvasContainer.size().width, canvasContainer.size().height);
   c.parent('content');
@@ -41,6 +40,11 @@ function draw() {
   //hasOwnProperty is a javascript function that tests
   //if an object contains a particular method or property
   //if there isn't a draw method the app will alert the user
+  textSize(20);
+  text('Current Tool: ' + toolbox.selectedTool.name, 10, 20);
+  text('Current Color: ' + currentColor, 10, 40);
+  text('Current Alpha: ' + currentAlpha, 10, 60);
+  textFont('Arial');
   if (toolbox.selectedTool.hasOwnProperty('draw') && mousePressonCanvas(c)) {
     toolbox.selectedTool.draw();
     if (brushControllers) {
@@ -51,6 +55,9 @@ function draw() {
     fill(mapColorToRGB(currentColor));
     stroke(mapColorToRGB(currentColor));
     strokeWeight(brushSize);
+  }
+  for (let i = 0; i < toolbox.objects.length; i++) {
+    toolbox.objects[i].draw();
   }
 }
 function mouseDragged() {

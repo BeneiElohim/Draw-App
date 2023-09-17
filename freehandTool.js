@@ -1,7 +1,7 @@
 function FreehandTool() {
   // Set an icon and a name for the object
-  this.icon = "assets/freehand.jpg";
-  this.name = "freehand";
+  this.icon = 'assets/freehand.jpg';
+  this.name = 'freehand';
 
   // To smoothly draw, we'll draw a line from the previous mouse location
   // to the current mouse location. The following values store
@@ -36,5 +36,8 @@ function FreehandTool() {
       previousMouseX = -1;
       previousMouseY = -1;
     }
+  };
+  this.populateOptions = function () {
+    brushControllers = true;
   };
 }
