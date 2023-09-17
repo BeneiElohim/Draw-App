@@ -4,7 +4,7 @@ function HelperFunctions() {
   //be added to the button and doesn't 'belong' to the object
 
   //event handler for the clear button event. Clears the screen
-  select("#clearButton").mouseClicked(function () {
+  select('#clearButton').mouseClicked(function () {
     background(255, 255, 255);
     //call loadPixels to update the drawing state
     //this is needed for the mirror tool
@@ -13,10 +13,10 @@ function HelperFunctions() {
 
   //event handler for the save image button. saves the canvsa to the
   //local file system.
-  select("#saveImageButton").mouseClicked(function () {
-    saveCanvas("myPicture", "json");
+  select('#saveImageButton').mouseClicked(function () {
+    saveCanvas('myPicture', 'json');
   });
-  select("#setBackgroundColorButton").mouseClicked(function () {
+  select('#setBackgroundColorButton').mouseClicked(function () {
     background(currentColor);
     backgroundColor = currentColor;
   });
@@ -33,14 +33,14 @@ function mousePressonCanvas(canvas) {
   return false;
 }
 function createBrushSliders() {
-  select(".options").html(`<label for="sizeSlider">Brush Size</label>
+  select('.options').html(`<label for="sizeSlider">Brush Size</label>
   <input type="range" id="sizeSlider" min="1" max="50" value="10" />
 
   <label for="opacitySlider">Brush Opacity</label>
   <input type="range" id="opacitySlider" min="0" max="255" value="255" />`);
 }
 function populateSpraySliders() {
-  select(".options").html(`<label for="sizeSlider">Spread</label>
+  select('.options').html(`<label for="sizeSlider">Spread</label>
     <input type="range" id="spreadSlider" min="1" max="50" value="10" />
   
     <label for="Point Slider">Points</label>
@@ -52,7 +52,6 @@ function populateSpraySliders() {
     <input type="range" id="opacitySlider" min="0" max="255" value="255" />
     <button id='squareSprayButton'>Square</button>
     <button id='roundSprayButton'>Round</button>`);
-
 }
 function mapColorToRGB(colorName) {
   const colorMappings = {
@@ -81,4 +80,8 @@ function mapColorToRGB(colorName) {
   } else {
     return color(0, 0, 0); // Return a default RGB color for unknown color names
   }
+}
+function mouseCloseToObject(objectPositionX, objectPositionY, mouseX, mouseY) {
+  let d = dist(objectPositionX, objectPositionY, mouseX, mouseY);
+  return d < 10; // If the distance is less than 10 pixels, return true
 }

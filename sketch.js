@@ -43,9 +43,11 @@ function draw() {
       currentAlpha = select('#opacitySlider').value();
       //update the brush size and opacity at runtime
     }
-    for (let i = 0; i < toolbox.objects.length; i++) {
-      toolbox.objects[i].draw();
-    }
+    toolbox.objects.forEach((object) => {
+      if (object.value != '') {
+        object.draw();
+      }
+    });
     fill(mapColorToRGB(currentColor));
     stroke(mapColorToRGB(currentColor));
     strokeWeight(brushSize);
