@@ -21,9 +21,6 @@ function ColourPalette() {
     'teal',
     'aqua',
   ];
-  //make the start colour be black
-
-  var self = this;
 
   var colourClick = function () {
     //remove the old border
