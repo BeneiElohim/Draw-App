@@ -26,7 +26,6 @@ function setup() {
 
   //create a toolbox for storing the tools
   toolbox = new Toolbox();
-
   //add the tools to the toolbox.
   toolbox.addTool(new FreehandTool());
   toolbox.addTool(new LineToTool());
